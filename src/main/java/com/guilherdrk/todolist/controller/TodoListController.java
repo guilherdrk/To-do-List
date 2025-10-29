@@ -2,10 +2,9 @@ package com.guilherdrk.todolist.controller;
 
 import com.guilherdrk.todolist.domain.Task;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,5 +20,12 @@ public class TodoListController {
         return ResponseEntity.ok(tasks);
     }
 
+    @PostMapping
+    public ResponseEntity<Task> createTasks(@RequestBody Task task){
+        Task newTask = new Task(task.id(), task.description());
+        tasks.add(newTask);
+        return ResponseEntity.ok(newTask);
+
+    }
 
 }
